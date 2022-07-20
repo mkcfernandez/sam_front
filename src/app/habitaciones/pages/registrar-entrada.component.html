@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title">Registrar Entrada Habitación: {{habitacion_numero}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+  
+    <form (ngSubmit)="guardar()" [formGroup]="formRegistrarEntrada">
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="palcas">Placas Vehículo</label>
+            <input type="text" class="form-control text-uppercase" id="palcas" aria-describedby="placas_v" formControlName="placa_vehiculo" placeholder="Ingresa las placas del vehículo">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="palcas">Entrada</label>
+            <div class="input-group">
+              <input type="datetime-local" class="form-control" formControlName="entrada">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="adicional">Persona Adicional</label>
+            <select class="form-control" id="adicional" formControlName="adicional">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="tarifa">Tarifa</label>
+            <select class="form-control" id="tarifa" [(ngModel)]="tarifaSeleccionadaId" name="tarifa_v" (change)="tarifaSeleccionada()" formControlName="tarifa_id">
+              <option *ngFor="let item of tarifas" [value]="item.tarifa_id">
+                Horas: {{item.tarifa_hora}} - Costo: {{item.tarifa_precio | currency}}
+              </option>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+    </form>

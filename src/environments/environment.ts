@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  webAPI: 'https://localhost:7100/api/'
+  // webAPI: 'http://api.dev.tumotel.gsctech.com.mx/api/'
 };
 
 /*

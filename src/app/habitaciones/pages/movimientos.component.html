@@ -1,0 +1,54 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Rack de Habitaciones</h4>
+            <span>
+                <i class="fas fa-check"></i> Registrar Entrada | 
+                <i class="fas fa-sign-out-alt"></i> Registrar Salida | 
+                <i class="fas fa-hands-wash"></i> Registrar Limpieza | 
+                <i class="fas fa-lock"></i> Bloquear | 
+                <i class="fas fa-concierge-bell"></i> Servicio
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive-md">
+              <table class="table table-striped table-bordered" id="">
+                <thead class="text-secondary">
+                  <tr class="headColum">
+                    <th>Habitación</th>
+                    <th>Tipo</th>
+                    <th>Placas</th>
+                    <th>Adicional</th>
+                    <th>Entrada</th>
+                    <th>Salida</th>
+                    <th>Tarifa</th>
+                    <th>Tiempo</th>
+                    <th>Observaciones</th>
+                    <th colspan="5">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr class="headColum" *ngFor="let item of movimientos">
+                    <td>{{item.habitacion_numero}}</td>
+                    <td>{{item.tipo_habitacion_nombre}}</td>
+                    <td>{{item.placa_vehiculo}}</td>
+                    <td>{{item.adicional}}</td>
+                    <td>{{item.entrada}}</td>
+                    <td>{{item.salida}}</td>
+                    <td>{{item.tarifa_precio | currency}}</td>
+                    <td>{{item.tarifa_hora}}</td>
+                    <td>{{item.observaciones}}</td>
+                    <td><button type="button" class="btn btn-primary btn-sm" [disabled]="item.tarifa_hora" (click)="registrarEntrada(item.habitacion_id, item.habitacion_numero, item.tipo_habitacion_id)"><i class="fas fa-check"></i></button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" [disabled]="!item.tarifa_hora" (click)="registrarSalida(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-sign-out-alt"></i></button></td>
+                    <td><button type="button" class="btn btn-success btn-sm" [disabled]="!item.tarifa_hora" (click)="registrarLimpieza(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-hands-wash"></i></button></td>
+                    <td><button type="button" class="btn btn-secondary btn-sm" [disabled]="item.tarifa_hora" (click)="registrarBloqueo(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-lock"></i></button></td>
+                    <td><button type="button" class="btn btn-warning btn-sm" [disabled]="!item.tarifa_hora" (click)="registrarServicio(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-concierge-bell"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

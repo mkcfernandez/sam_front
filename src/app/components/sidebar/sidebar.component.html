@@ -1,0 +1,44 @@
+<div class="content">
+    <div class="navigationBar">
+        <button #sidebarTg id="sidebarToggle" (click)="sidebarToggle()" class="btn sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</div>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo-container">
+            <!-- <div class="logo-container">
+                <img src="https://arzucomunicacion.lunaazul.org/wp-content/uploads/sites/3/2017/04/Isologo-Ariel-300x287.png" alt="logo-software" class="logo-sidebar">
+            </div> -->
+            <div class="brand-name-container">
+                <p class="brand-name">
+                    PMS - TuMotel <br/>
+                    <span class="brand-subname">
+                        by Global Solutions Consulting Tech
+                    </span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidebar-body">
+        <ul class="navigation-list">
+            <li *ngFor="let menuItem of menuItems" class="navigation-list-item" id="{{menuItem.class}}">
+                <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="navigation-link">
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="ni {{menuItem.icon}}"></i>
+                        </div>
+                        <div class="col-10">
+                            {{menuItem.title}}
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
