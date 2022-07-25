@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  webAPI: 'https://localhost:7100/api/'
+  webAPI: 'http://localhost:5100/api/'
   // webAPI: 'http://api.dev.tumotel.gsctech.com.mx/api/'
 };
 

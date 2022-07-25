@@ -17,8 +17,16 @@ export class MovimientosService {
     return this.http.post(this.baseURL + 'habitacion/movimiento/registrar', body);
   }
 
+  putRegistrarEntradaHabitacion(body: any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar', body);
+  }
+
   postRegistrarSalidaHabitacion(body: any){
     return this.http.post(this.baseURL + 'habitacion/movimiento/cambio_de_estatus', body);
+  }
+
+  postRegistrarBloqueoHabitacion(body: any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar/bloqueo', body);
   }
 
   getTarifasByMotelId(motel_id: number){
@@ -27,5 +35,9 @@ export class MovimientosService {
 
   getTarifasByMotelIdAndTipoHabitacionId(motel_id: number, tipo_habitacion_id: number){
     return this.http.get(this.baseURL + 'catalogo/tarifas/' + motel_id + '/tipo_habitacion/' + tipo_habitacion_id);
+  }
+
+  getHabitacionesMotivoBloqueoLista(){
+    return this.http.get(this.baseURL + 'catalogo/motivo_bloqueo');
   }
 }

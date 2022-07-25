@@ -1,9 +1,29 @@
 <div class="modal-header">
-    <h4 class="modal-title">Registrar Bloqueo Habitación: {{habitacion_numero}}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  <h4 class="modal-title">Registrar Bloqueo Habitación: {{habitacion_numero}}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+  <form (ngSubmit)="guardar()" [formGroup]="formRegistrarBloqueo">
+    <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="motivo">Motivo Bloqueo</label>
+            <select class="form-control" id="motivo" [(ngModel)]="motivoBloqueoSeleccionadoId" required name="motivo_bloqueo_nombre_v" (change)="motivoSeleccionado()" formControlName="motivo_bloqueo_id">
+              <option [ngValue]="null" [disabled]="true" >Seleccione el motivo por el cuál desea bloquear la habitacion</option>
+              <option *ngFor="let item of motivoBloqueo" [value]="item.motivo_bloqueo_id">
+                {{item.motivo_bloqueo_nombre}}
+              </option>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-  </div>
+
   <div class="modal-footer">
+    <button *ngIf="formRegistrarBloqueo.valid" type="button" class="btn btn-outline-success" (click)="guardar()">Guardar</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
   </div>
+  </form>

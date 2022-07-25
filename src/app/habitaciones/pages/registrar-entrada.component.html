@@ -6,12 +6,14 @@
     <form (ngSubmit)="guardar()" [formGroup]="formRegistrarEntrada">
       <div class="modal-body">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12">
           <div class="form-group">
-            <label for="palcas">Placas Vehículo</label>
-            <input type="text" class="form-control text-uppercase" id="palcas" aria-describedby="placas_v" formControlName="placa_vehiculo" placeholder="Ingresa las placas del vehículo">
+            <label for="palcas">Información del Vehículo</label>
+            <input type="text" class="form-control" id="palcas" aria-describedby="placas_v" placeholder="Información del vehículo Ej: Mazda 2 Blanco Placas: YUJ-811-A" formControlName="placa_vehiculo">
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-3">
           <div class="form-group">
             <label for="palcas">Entrada</label>
@@ -35,18 +37,31 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="tarifa">Tarifa</label>
-            <select class="form-control" id="tarifa" [(ngModel)]="tarifaSeleccionadaId" name="tarifa_v" (change)="tarifaSeleccionada()" formControlName="tarifa_id">
+            <select class="form-control" id="tarifa" [(ngModel)]="tarifaSeleccionadaId" required name="tarifa_v" (change)="tarifaSeleccionada()" formControlName="tarifa_id">
+              <option [ngValue]="null" [disabled]="true" >Seleccione la tarifa</option>
               <option *ngFor="let item of tarifas" [value]="item.tarifa_id">
                 Horas: {{item.tarifa_hora}} - Costo: {{item.tarifa_precio | currency}}
               </option>
           </select>
           </div>
         </div>
+        <div class="col-md-3">
+          <div class="form-group" [hidden]="movimiento_habitacion_id===0">
+            <label for="hora_adicional">Hora Adicional</label>
+            <select class="form-control" id="hora_adicional" formControlName="hora_adicional">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-success" *ngIf="formRegistrarEntrada.valid" (click)="guardar()">Guardar</button>
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
     </div>
     </form>

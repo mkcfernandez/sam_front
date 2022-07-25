@@ -17,7 +17,8 @@ export class RegistrarEntradaComponent implements OnInit {
   @Input() habitacion_tipo_id: any;
   tarifas: Tarifas[] = [];
   tarifa_id: any;
-  tarifaSeleccionadaId: any;
+  tarifaSeleccionadaId: any = null;
+  movimiento_habitacion_id: any;
 
   model!: NgbDateStruct;
 
@@ -39,7 +40,6 @@ export class RegistrarEntradaComponent implements OnInit {
   catalogoTarifas(motel_id: number, habitacion_tipo_id: number){
     this.movimientosService.getTarifasByMotelIdAndTipoHabitacionId(motel_id, habitacion_tipo_id).subscribe((response: any) => {
       this.tarifas = response;
-      console.log(this.tarifas);
     });
   }
 
@@ -47,12 +47,22 @@ export class RegistrarEntradaComponent implements OnInit {
     this.formRegistrarEntrada.patchValue({habitacion_id: this.habitacion_id});
     this.formRegistrarEntrada.patchValue({usuario_id: 2});
 
-    this.movimientosService.postRegistrarEntradaHabitacion(this.formRegistrarEntrada.value).subscribe((res) => {
-      console.log(res)
-      this.globalService.filter('Entrada registrada correctamente');
-    });
-    this.activeModal.close();
+    if(this.movimiento_habitacion_id !== 0){
+      this.movimientosService.putRegistrarEntradaHabitacion(this.formRegistrarEntrada.value).subscribe((res) => {
+        console.log(res)
+        this.globalService.filter('Entrada registrada correctamente');
+      });
+    }
+    else
+    {
+      this.movimientosService.postRegistrarEntradaHabitacion(this.formRegistrarEntrada.value).subscribe((res) => {
+        console.log(res)
+        this.globalService.filter('Entrada registrada correctamente');
+      });
+    }
+
     
+    this.activeModal.close();
   };
 
   tarifaSeleccionada(){
@@ -64,8 +74,9 @@ export class RegistrarEntradaComponent implements OnInit {
       habitacion_id   : [''],
       tarifa_id       : [''],
       placa_vehiculo  : [''],
-      adicional       : [''],
+      adicional       : [0],
       entrada         : [''],
+      hora_adicional  : [0],
       observaciones   : [''],
       usuario_id      : ['']
     })

@@ -29,7 +29,7 @@ import { RegistrarServicioComponent } from 'src/app/habitaciones/components/regi
     RegistrarEntradaComponent,
     RegistrarSalidaComponent,
     RegistrarBloqueoComponent,
-    RegistrarServicioComponent,
+    RegistrarServicioComponent
   ],
   imports: [
     CommonModule,

@@ -168,3 +168,25 @@ body.active .page .content {
 .headColum {
     text-align: center;
 }
+
+.habitacionDisponible{
+    background-color: #a9cfc2bb;
+}
+
+.habitacionOcupada{
+    background-color: #eb929286;
+}
+
+.habitacionSucia{
+    background-color: #7ab0ec86;
+}
+
+.habitacionBloqueada{
+    background-color: #6e53cf86;
+}
+
+.modal-header {
+    background-color: rgb(104, 133, 160);
+    color: white;
+}
+
