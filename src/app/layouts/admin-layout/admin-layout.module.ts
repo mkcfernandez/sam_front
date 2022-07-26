@@ -13,9 +13,12 @@ import { MovimientosComponent } from './../../habitaciones/components/movimiento
 import { AlmacenComponent } from './../../almacen/components/almacen.component';
 import { UsuariosComponent } from './../../usuarios/components/usuarios.component';
 import { ReportesComponent } from './../../reportes/components/reportes.component';
-import { RegistrarSalidaComponent } from 'src/app/habitaciones/components/registrar-salida.component';
 import { RegistrarBloqueoComponent } from 'src/app/habitaciones/components/registrar-bloqueo.component';
 import { RegistrarServicioComponent } from 'src/app/habitaciones/components/registrar-servicio.component';
+import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components/registrar-hora-adicional.component';
+import { RegistrarSalidaComponent } from '../../habitaciones/components/registrar-salida.component';
+import { RegistrarLimpiezaComponent } from 'src/app/habitaciones/components/registrar-limpieza.component';
+import { RegistrarDesbloqueoComponent } from 'src/app/habitaciones/components/registrar-desbloqueo.component';
 
 
 
@@ -27,9 +30,12 @@ import { RegistrarServicioComponent } from 'src/app/habitaciones/components/regi
     UsuariosComponent,
     ReportesComponent,
     RegistrarEntradaComponent,
-    RegistrarSalidaComponent,
     RegistrarBloqueoComponent,
-    RegistrarServicioComponent
+    RegistrarServicioComponent,
+    RegistrarHoraAdicionalComponent,
+    RegistrarSalidaComponent,
+    RegistrarLimpiezaComponent,
+    RegistrarDesbloqueoComponent
   ],
   imports: [
     CommonModule,

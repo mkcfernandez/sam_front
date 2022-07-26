@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Registrar Limpieza Habitación: {{habitacion_numero}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+  
+    <form (ngSubmit)="guardar()" [formGroup]="formRegistrarLimpieza">
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="camarista">Camaristas</label>
+            <select class="form-control" id="camarista" [(ngModel)]="camaristaseleecionadaid" required name="camarista_v" (change)="camaristaSeleccionada()" formControlName="camarista_id">
+                <option [ngValue]="null" [disabled]="true" >Seleccione una camarista</option>
+                <option *ngFor="let item of catCamaristas" [value]="item.usuario_id">
+                  {{item.usuario_nombre}}
+                </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" *ngIf="formRegistrarLimpieza.valid" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+    </form>

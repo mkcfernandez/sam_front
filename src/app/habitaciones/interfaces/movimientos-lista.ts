@@ -11,6 +11,7 @@ export interface MovimientosLista {
     tarifa_precio               :   number;
     tarifa_hora                 :   number;
     hora_adicional              :   number;
+    hora_adicional_costo        :   number;
     observaciones               :   String;
     estado_habitacion           :   number;
 }

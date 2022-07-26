@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">Registrar Hora Adicional Habitación: {{habitacion_numero}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  
+    <form (ngSubmit)="guardar()" [formGroup]="formRegistrarHoraAdicional">
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="form-group">
+                <label for="hora_adicional">Hora Adicional</label>
+                <select class="form-control" id="hora_adicional_v" required formControlName="hora_adicional" [(ngModel)]="horaAdicionalSeleecionada" (change)="horaAdicionalSeleccionada()">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+      <button *ngIf="formRegistrarHoraAdicional.valid" type="button" class="btn btn-outline-success" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+    </form>

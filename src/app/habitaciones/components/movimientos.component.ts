@@ -1,12 +1,16 @@
+import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components/registrar-hora-adicional.component';
 import { RegistrarServicioComponent } from './registrar-servicio.component';
 import { RegistrarBloqueoComponent } from './registrar-bloqueo.component';
-import { RegistrarSalidaComponent } from './registrar-salida.component';
 import { Component, OnInit} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovimientosLista } from '../interfaces/movimientos-lista';
 import { MovimientosService } from '../services/movimientos.service';
 import { RegistrarEntradaComponent } from './registrar-entrada.component';
 import { GlobalServicesService } from 'src/app/services/global-services.service';
+import { RegistrarSalida } from '../interfaces/registrar-salida';
+import { RegistrarSalidaComponent } from './registrar-salida.component';
+import { RegistrarLimpiezaComponent } from './registrar-limpieza.component';
+import { RegistrarDesbloqueoComponent } from './registrar-desbloqueo.component';
 
 @Component({
   selector: 'app-movimientos',
@@ -17,12 +21,14 @@ export class MovimientosComponent implements OnInit {
 
   notFound = false;
   movimientos: MovimientosLista[] = [];
+  registrarSalidaHabitacion!: RegistrarSalida;
+  usuario_id: any;
 
   constructor(
     private movimientosService: MovimientosService,
     private globalService: GlobalServicesService,
     private modalService: NgbModal
-    ) { 
+    ) {
       this.globalService.listen().subscribe((m:any)=> {
         this.getHabitacionMovimientosLista();
       })
@@ -38,15 +44,19 @@ export class MovimientosComponent implements OnInit {
 
     this.movimientosService.getHabitacionesMovvimientosLista().subscribe((response: any) => {
       this.movimientos = response;
-      console.log(this.movimientos);
     });
   }
 
-  registrarEntrada(habitacion_id: number, habitacion_numero: number, habitacion_tipo_id: number, movimiento_habitacion_id: number){
+  registrarEntrada(habitacion_id: number, habitacion_numero: number, habitacion_tipo_id: number){
     const modalRef = this.modalService.open(RegistrarEntradaComponent, {size: 'xl'});
     modalRef.componentInstance.habitacion_id = habitacion_id;
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
     modalRef.componentInstance.habitacion_tipo_id = habitacion_tipo_id;
+  }
+
+  registrarHoraAdicional(habitacion_numero: number, movimiento_habitacion_id: number){
+    const modalRef = this.modalService.open(RegistrarHoraAdicionalComponent, {size: 'md'});
+    modalRef.componentInstance.habitacion_numero = habitacion_numero;
     modalRef.componentInstance.movimiento_habitacion_id = movimiento_habitacion_id;
   }
 
@@ -57,13 +67,13 @@ export class MovimientosComponent implements OnInit {
   }
 
   registrarLimpieza(habitacion_id: number, habitacion_numero: number){
-    const modalRef = this.modalService.open(RegistrarEntradaComponent, {size: 'lg'});
+    const modalRef = this.modalService.open(RegistrarLimpiezaComponent, {size: 'lg'});
     modalRef.componentInstance.habitacion_id = habitacion_id;
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
   }
 
   registrarDesbloqueo(habitacion_id: number, habitacion_numero: number){
-    const modalRef = this.modalService.open(RegistrarBloqueoComponent, {size: 'lg'});
+    const modalRef = this.modalService.open(RegistrarDesbloqueoComponent, {size: 'lg'});
     modalRef.componentInstance.habitacion_id = habitacion_id;
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
   }

@@ -51,10 +51,10 @@ export class RegistrarBloqueoComponent implements OnInit {
     this.formRegistrarBloqueo.patchValue({usuario_id: 2});
     console.log(this.formRegistrarBloqueo.value);
 
-    // this.movimientosService.postRegistrarBloqueoHabitacion(this.formRegistrarBloqueo.value).subscribe((res) => {
-    //   console.log(res)
-    //   this.globalService.filter('Bloqueo registrado correctamente');
-    // });
+    this.movimientosService.postRegistrarBloqueoHabitacion(this.formRegistrarBloqueo.value).subscribe((res) => {
+      console.log(res)
+      this.globalService.filter('Bloqueo registrado correctamente');
+    });
     this.activeModal.close();
     
   };

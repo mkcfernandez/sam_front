@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { RegistrarSalida } from '../interfaces/registrar-salida';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +14,35 @@ export class MovimientosService {
     return this.http.get(this.baseURL + 'habitacion/movimiento/lista');
   }
 
+  getHabitacionMovimientosById(movimiento_habitacion_id: number){
+    return this.http.get(this.baseURL + 'habitacion/movimiento/' + movimiento_habitacion_id);
+  }
+
   postRegistrarEntradaHabitacion(body: any){
     return this.http.post(this.baseURL + 'habitacion/movimiento/registrar', body);
   }
 
-  putRegistrarEntradaHabitacion(body: any){
-    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar', body);
+  putRegistrarEntradaHabitacionHoraAdicional(body: any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/hora_adicional', body);
   }
 
-  postRegistrarSalidaHabitacion(body: any){
-    return this.http.post(this.baseURL + 'habitacion/movimiento/cambio_de_estatus', body);
+  postRegistrarSalidaHabitacion(body:any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar/salida/', body);
+  }
+
+  postRegistrarLimpiezaHabitacion(body:any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar/limpieza/', body);
+  }
+
+  postRegistrarDesbloqueoHabitacion(body: any){
+    return this.http.post(this.baseURL + 'habitacion/movimiento/registrar/desbloqueo', body);
   }
 
   postRegistrarBloqueoHabitacion(body: any){
     return this.http.post(this.baseURL + 'habitacion/movimiento/registrar/bloqueo', body);
   }
+
+  // Catálogos
 
   getTarifasByMotelId(motel_id: number){
     return this.http.get(this.baseURL + 'catalogo/tarifas/' + motel_id);
@@ -39,5 +54,9 @@ export class MovimientosService {
 
   getHabitacionesMotivoBloqueoLista(){
     return this.http.get(this.baseURL + 'catalogo/motivo_bloqueo');
+  }
+
+  getCatalogoCamaristasByMotelId(motel_id: number){
+    return this.http.get(this.baseURL + 'catalogo/camaristas/' + motel_id);
   }
 }
