@@ -1,7 +1,7 @@
 import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components/registrar-hora-adicional.component';
 import { RegistrarServicioComponent } from './registrar-servicio.component';
 import { RegistrarBloqueoComponent } from './registrar-bloqueo.component';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Output} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovimientosLista } from '../interfaces/movimientos-lista';
 import { MovimientosService } from '../services/movimientos.service';
@@ -24,6 +24,14 @@ export class MovimientosComponent implements OnInit {
   registrarSalidaHabitacion!: RegistrarSalida;
   usuario_id: any;
 
+  estatus_id: number = 0;
+  estatusSeleccionado: number = 0;
+
+  h_ocupadas: any;
+  h_sucias: any;
+  h_bloqueadas: any;
+  h_disponibles: any;
+
   constructor(
     private movimientosService: MovimientosService,
     private globalService: GlobalServicesService,
@@ -31,6 +39,7 @@ export class MovimientosComponent implements OnInit {
     ) {
       this.globalService.listen().subscribe((m:any)=> {
         this.getHabitacionMovimientosLista();
+        
       })
     }
 
@@ -44,6 +53,10 @@ export class MovimientosComponent implements OnInit {
 
     this.movimientosService.getHabitacionesMovvimientosLista().subscribe((response: any) => {
       this.movimientos = response;
+      this.h_disponibles = this.movimientos.filter(x => x.estado_habitacion === 0).length;
+      this.h_ocupadas = this.movimientos.filter(x => x.estado_habitacion === 1).length;
+      this.h_sucias = this.movimientos.filter(x => x.estado_habitacion === 2).length;
+      this.h_bloqueadas = this.movimientos.filter(x => x.estado_habitacion === 3).length;
     });
   }
 
@@ -90,4 +103,8 @@ export class MovimientosComponent implements OnInit {
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
   }
 
+  estatusSeleccionadoId(){
+    this.estatus_id = this.estatusSeleccionado;
+    this.movimientos = this.movimientos.filter(x => x.estado_habitacion === this.estatus_id);
+  }
 }

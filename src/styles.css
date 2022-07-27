@@ -190,3 +190,8 @@ body.active .page .content {
     color: white;
 }
 
+.filtro {
+    background-color: rgb(104, 133, 160) !important;
+    color: white !important;
+}
+
