@@ -19,8 +19,10 @@ import { RegistrarDesbloqueoComponent } from './registrar-desbloqueo.component';
 })
 export class MovimientosComponent implements OnInit {
 
+  siguiente_habitacion: any;
   notFound = false;
   movimientos: MovimientosLista[] = [];
+  movimientosFiltrados: MovimientosLista[] = [];
   registrarSalidaHabitacion!: RegistrarSalida;
   usuario_id: any;
 
@@ -39,7 +41,6 @@ export class MovimientosComponent implements OnInit {
     ) {
       this.globalService.listen().subscribe((m:any)=> {
         this.getHabitacionMovimientosLista();
-        
       })
     }
 
@@ -57,6 +58,9 @@ export class MovimientosComponent implements OnInit {
       this.h_ocupadas = this.movimientos.filter(x => x.estado_habitacion === 1).length;
       this.h_sucias = this.movimientos.filter(x => x.estado_habitacion === 2).length;
       this.h_bloqueadas = this.movimientos.filter(x => x.estado_habitacion === 3).length;
+
+      this.movimientosFiltrados = this.movimientos.filter(x => x.estado_habitacion === 0);
+      this.siguiente_habitacion = this.movimientosFiltrados.shift()?.habitacion_numero;
     });
   }
 
