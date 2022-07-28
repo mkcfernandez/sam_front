@@ -4,6 +4,7 @@ import { MovimientosComponent } from './../../habitaciones/components/movimiento
 import { AlmacenComponent } from './../../almacen/components/almacen.component';
 import { UsuariosComponent } from './../../usuarios/components/usuarios.component';
 import { ReportesComponent } from './../../reportes/components/reportes.component';
+import { CorteTurnoComponent } from "src/app/reportes/components/corte-turno.component";
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -11,5 +12,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'habitaciones/movimientos',     component: MovimientosComponent },
     { path: 'almacen',                      component: AlmacenComponent },
     { path: 'usuarios',                     component: UsuariosComponent },
-    { path: 'reportes',                     component: ReportesComponent },
+    { path: 'reportes',                     component: CorteTurnoComponent },
 ];
