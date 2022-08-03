@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  webAPI: 'http://api.dev.tumotel.gsctech.com.mx/api/'
+  webAPI: 'https://sam-api-gsctech.azurewebsites.net/api/'
 };
