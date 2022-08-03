@@ -1,7 +1,7 @@
 import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components/registrar-hora-adicional.component';
 import { RegistrarServicioComponent } from './registrar-servicio.component';
 import { RegistrarBloqueoComponent } from './registrar-bloqueo.component';
-import { Component, OnInit, Output} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovimientosLista } from '../interfaces/movimientos-lista';
 import { MovimientosService } from '../services/movimientos.service';
@@ -38,9 +38,9 @@ export class MovimientosComponent implements OnInit {
     private globalService: GlobalServicesService,
     private modalService: NgbModal
     ) {
-      // this.globalService.listen().subscribe((m:any)=> {
-      //   this.getHabitacionMovimientosLista();
-      // })
+      this.globalService.listen().subscribe((m:any)=> {
+        this.getHabitacionMovimientosLista();
+      })
     }
 
   ngOnInit(): void {

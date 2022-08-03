@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CorteTurno } from '../interfaces/corte-turno';
 import { ReporteService } from '../services/reportes.service';
 
@@ -10,42 +11,57 @@ import { ReporteService } from '../services/reportes.service';
 export class CorteTurnoComponent implements OnInit {
 
   corteTurnoLst: CorteTurno [] = [];
-  // corteTurno: CorteTurno;
+  body: any;
+  formCorteTurnos!: FormGroup;
+  totalVendidas: number = 0;
+  totalIngreso: number = 0;
 
   constructor(
-    private reporteServices: ReporteService
+    private reporteServices: ReporteService,
+    private readonly fb: FormBuilder
   ) 
   {
-    // this.corteTurno = new CorteTurno();
-
-    // this.corteTurno = {
-    //   motel_id: 0,
-    //   fecha_inicio: '',
-    //   fecha_fin: '',
-    //   tipo_habitacion_nombre: '',
-    //   tarifa_precio: 0,
-    //   vendidas: 0,
-    //   total_venta: 0
-    // }
-
-    
+    this.body = {
+      motel_id: Number,
+      fecha_inicio: String,
+      fecha_fin: String
+    }
   }
 
   ngOnInit(): void {
-    this.postReporteCorteXTurno();
+    this.formCorteTurnos = this.initForm();
   }
 
   postReporteCorteXTurno(){
-    // this.corteTurnoLst = [];
+    this.corteTurnoLst = [];
 
-    // this.corteTurno.motel_id = 1;
-    // this.corteTurno.fecha_inicio = "2022-07-28 07:00";
-    // this.corteTurno.fecha_fin = "2022-07-28 07:00";
+    // this.body.motel_id = 1;
+    // this.body.fecha_inicio =  this.formCorteTurnos.patchValue({fecha_i: 2});
+    // this.body.fecha_fin = this.formCorteTurnos.patchValue({fecha_f: 2});
 
-    // this.reporteServices.postReporteCorteXTurno(this.corteTurno).subscribe((response: any) => {
-    //   this.corteTurnoLst = response;
-    //   console.log(this.corteTurnoLst);
-    // });
+    this.formCorteTurnos.patchValue({motel_id: 1});
+    this.totalVendidas = 0;
+    this.totalIngreso = 0;
+
+    this.reporteServices.postReporteCorteXTurno(this.formCorteTurnos.value).subscribe((response: any) => {
+      this.corteTurnoLst = response;
+
+      this.corteTurnoLst.forEach(item => {
+        this.totalVendidas += item.vendidas;
+      });
+
+      this.corteTurnoLst.forEach(item => {
+        this.totalIngreso += item.total_venta;
+      });
+    });
+  }
+
+  initForm(): FormGroup{
+    return this.fb.group({
+      motel_id : [''],
+      fecha_inicio  : [''],
+      fecha_fin  : ['']
+    })
   }
 
 }

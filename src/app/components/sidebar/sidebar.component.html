@@ -26,11 +26,11 @@
 
     <div class="sidebar-body">
         <ul class="navigation-list">
-            <li *ngFor="let menuItem of menuItems" class="navigation-list-item" id="{{menuItem.class}}">
-                <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="navigation-link">
+            <li *ngFor="let menuItem of menuItems"class="navigation-list-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" id="{{menuItem.class}}">
+                <a [routerLink]="[menuItem.path]" class="navigation-link">
                     <div class="row">
                         <div class="col-2">
-                            <i class="ni {{menuItem.icon}}"></i>
+                            <i class="{{menuItem.icon}}"></i>
                         </div>
                         <div class="col-10">
                             {{menuItem.title}}

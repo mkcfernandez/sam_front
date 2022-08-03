@@ -1,3 +1,31 @@
-<div class="content">
-    Reportes
+<div class="content p-1">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Reportes</h4>
+      </div>
+      <div class="card-body">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Habitaciones</a>
+            <ng-template ngbNavContent>
+              <app-corte-turno></app-corte-turno>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Venta de Productos</a>
+            <ng-template ngbNavContent>
+              
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Gastos</a>
+            <ng-template ngbNavContent>
+             
+            </ng-template>
+          </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+    </div>
 </div>

@@ -124,6 +124,11 @@ body.active .page .content {
     text-decoration: none;
 }
 
+/* .navigation-link.active {
+    color:rgb(255, 255,255, 0.7);
+    
+} */
+
 .navigation-list-item:hover .navigation-link {
     color:rgb(255, 255,255, 0.7);
 }

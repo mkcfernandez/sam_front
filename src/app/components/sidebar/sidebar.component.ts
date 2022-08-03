@@ -28,7 +28,6 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[] = [];
 
   constructor(
-    private router: Router,
     private renderer: Renderer2) { }
 
   ngOnInit() {

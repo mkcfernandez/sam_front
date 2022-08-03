@@ -1,3 +1,4 @@
+import { CorteTurnoComponent } from './../../reportes/components/corte-turno.component';
 import { RegistrarEntradaComponent } from './../../habitaciones/components/registrar-entrada.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,6 @@ import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components
 import { RegistrarSalidaComponent } from '../../habitaciones/components/registrar-salida.component';
 import { RegistrarLimpiezaComponent } from 'src/app/habitaciones/components/registrar-limpieza.component';
 import { RegistrarDesbloqueoComponent } from 'src/app/habitaciones/components/registrar-desbloqueo.component';
-import { CorteTurnoComponent } from 'src/app/reportes/components/corte-turno.component';
 
 
 
