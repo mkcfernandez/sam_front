@@ -10,6 +10,8 @@
             <div class="row">
               <div class="col-md-12">
                 <button class="btn bg-success btn-sm text-white m-1"><i class="fas fa-check"></i> Entrada</button>
+                <button class="btn bg-success btn-sm text-white m-1"><i class="fas fa-history"></i> Actualizar Tarifa</button>
+                <button class="btn bg-warning btn-sm m-1"><i class="fas fas fa-sync"></i> Cambiar de Habitacion</button>
                 <button class="btn bg-info btn-sm text-white m-1"><i class="fas fa-check-double"></i> Hora Adicional</button>
                 <button class="btn bg-danger btn-sm text-white m-1"><i class="fas fa-sign-out-alt"></i> Salida</button>
                 <button class="btn bg-primary btn-sm text-white m-1"><i class="fas fa-hands-wash"></i> Limpieza</button>
@@ -66,6 +68,8 @@
                     <td><span *ngIf="item.hora_adicional_costo!==0" >{{item.hora_adicional_costo | currency}}</span></td>
                     <td><span *ngIf="item.estado_habitacion === 3">{{item.motivo_bloqueo}}</span> <span *ngIf="item.estado_habitacion !== 3">{{item.observaciones}}</span></td>
                     <td><button type="button" class="btn btn-success btn-sm" placement="start" ngbTooltip="Registrar Entrada" [disabled]="item.estado_habitacion!==0" (click)="registrarEntrada(item.habitacion_id, item.habitacion_numero, item.tipo_habitacion_id)"><i class="fas fa-check"></i></button></td>
+                    <td><button type="button" class="btn btn-success btn-sm" placement="start" ngbTooltip="Modificar Tarifa" [disabled]="item.estado_habitacion!==1" (click)="modificarTarifa(item.habitacion_id, item.habitacion_numero, item.tipo_habitacion_id, item.movimiento_habitacion_id)"><i class="fas fa-history"></i></button></td>
+                    <td><button type="button" class="btn btn-warning btn-sm" placement="start" ngbTooltip="Cambiar de Habitación" [disabled]="item.estado_habitacion!==1" (click)="cambiarHabitacion(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-sync"></i></button></td>
                     <td><button type="button" class="btn btn-info btn-sm text-white" placement="start" ngbTooltip="Registrar Hora Adicional" [disabled]="item.movimiento_habitacion_id===0" (click)="registrarHoraAdicional(item.habitacion_numero, item.movimiento_habitacion_id)"><i class="fas fa-pencil-alt"></i></button></td>
                     <td><button type="button" class="btn btn-danger btn-sm" placement="start" ngbTooltip="Registrar Salida" [disabled]="item.estado_habitacion!==1" (click)="registrarSalida(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-sign-out-alt"></i></button></td>
                     <td><button type="button" class="btn btn-primary btn-sm" placement="start" ngbTooltip="Registrar Limpieza" [disabled]="item.estado_habitacion!==2" (click)="registrarLimpieza(item.habitacion_id, item.habitacion_numero)"><i class="fas fa-hands-wash"></i></button></td>

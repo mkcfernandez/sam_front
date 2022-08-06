@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title">Modificar Tarifa Habitación: {{habitacion_numero}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+  
+    <form (ngSubmit)="guardar()" [formGroup]="formModificarTarifa">
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="tarifa">Tarifa</label>
+            <select class="form-control" id="tarifa" [(ngModel)]="tarifaSeleccionadaId" required name="tarifa_v" (change)="tarifaSeleccionada()" formControlName="tarifa_id">
+              <option [ngValue]="null" [disabled]="true" >Seleccione la tarifa</option>
+              <option *ngFor="let item of tarifas" [value]="item.tarifa_id">
+                Horas: {{item.tarifa_hora}} - Costo: {{item.tarifa_precio | currency}}
+              </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="observaciones">Observaciones</label>
+            <input type="text" class="form-control" id="observaciones" aria-describedby="observaciones_v" required formControlName="observaciones">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" *ngIf="formModificarTarifa.valid" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+    </form>

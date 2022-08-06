@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="entrada">Entrada</label>
             <div class="input-group">
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="adicional">Persona Adicional</label>
             <select class="form-control" id="adicional" formControlName="adicional">
@@ -34,7 +34,7 @@
             </select>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="tarifa">Tarifa</label>
             <select class="form-control" id="tarifa" [(ngModel)]="tarifaSeleccionadaId" required name="tarifa_v" (change)="tarifaSeleccionada()" formControlName="tarifa_id">
@@ -45,8 +45,8 @@
           </select>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group" [hidden]="movimiento_habitacion_id===0">
+        <!-- <div class="col-md-3">
+          <div class="form-group">
             <label for="hora_adicional">Hora Adicional</label>
             <select class="form-control" id="hora_adicional" formControlName="hora_adicional">
               <option>0</option>
@@ -56,7 +56,7 @@
               <option>4</option>
             </select>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 

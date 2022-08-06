@@ -1,7 +1,6 @@
-import { Value } from './../../../../node_modules/regjsparser/parser.d';
 import { Tarifas } from './../interfaces/tarifas';
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovimientosService } from '../services/movimientos.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GlobalServicesService } from 'src/app/services/global-services.service';
@@ -21,9 +20,7 @@ export class RegistrarEntradaComponent implements OnInit {
   tarifas: Tarifas[] = [];
   tarifa_id: any;
   tarifaSeleccionadaId: any = null;
-  movimiento_habitacion_id: any;
-  movimiento!: MovimientosLista;
-  entrada: any = new Date();
+  movimiento_habitacion_id!: MovimientosLista;
 
   formRegistrarEntrada!: FormGroup;
 
@@ -32,12 +29,12 @@ export class RegistrarEntradaComponent implements OnInit {
     private movimientosService: MovimientosService,
     private globalService: GlobalServicesService,
     private readonly fb: FormBuilder
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
       this.formRegistrarEntrada = this.initForm();
       this.catalogoTarifas(1, this.habitacion_tipo_id);
-      console.log(this.entrada);
   }
 
   catalogoTarifas(motel_id: number, habitacion_tipo_id: number){

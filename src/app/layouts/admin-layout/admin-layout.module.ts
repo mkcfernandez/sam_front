@@ -20,6 +20,8 @@ import { RegistrarHoraAdicionalComponent } from 'src/app/habitaciones/components
 import { RegistrarSalidaComponent } from '../../habitaciones/components/registrar-salida.component';
 import { RegistrarLimpiezaComponent } from 'src/app/habitaciones/components/registrar-limpieza.component';
 import { RegistrarDesbloqueoComponent } from 'src/app/habitaciones/components/registrar-desbloqueo.component';
+import { ModificarTarifaComponent } from 'src/app/habitaciones/components/modificar-tarifa.component';
+import { CambioHabitacionComponent } from 'src/app/habitaciones/components/cambio-habitacion.component';
 
 
 
@@ -37,7 +39,9 @@ import { RegistrarDesbloqueoComponent } from 'src/app/habitaciones/components/re
     RegistrarSalidaComponent,
     RegistrarLimpiezaComponent,
     RegistrarDesbloqueoComponent,
-    CorteTurnoComponent
+    CorteTurnoComponent,
+    ModificarTarifaComponent,
+    CambioHabitacionComponent
   ],
   imports: [
     CommonModule,

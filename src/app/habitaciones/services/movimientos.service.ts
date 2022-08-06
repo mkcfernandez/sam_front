@@ -22,6 +22,14 @@ export class MovimientosService {
     return this.http.post(this.baseURL + 'habitacion/movimiento/registrar', body);
   }
 
+  putpActualizarTarifaHabitacion(body: any){
+    return this.http.put(this.baseURL + 'habitacion/movimiento/actualizar/tarifa', body);
+  }
+
+  putpCambioHabitacion(body: any){
+    return this.http.put(this.baseURL + 'habitacion/movimiento/cambio_habitacion', body);
+  }
+
   putRegistrarEntradaHabitacionHoraAdicional(body: any){
     return this.http.post(this.baseURL + 'habitacion/movimiento/hora_adicional', body);
   }
@@ -43,6 +51,14 @@ export class MovimientosService {
   }
 
   // Catálogos
+
+  getCatalogoHabitacionesByMotelId(motel_id: number){
+    return this.http.get(this.baseURL + 'catalogo/habitaciones/' + motel_id);
+  }
+
+  getCatalogoHabitacionesDisponibleByMotelId(motel_id: number){
+    return this.http.get(this.baseURL + 'catalogo/habitaciones/disponibles/' + motel_id);
+  }
 
   getTarifasByMotelId(motel_id: number){
     return this.http.get(this.baseURL + 'catalogo/tarifas/' + motel_id);

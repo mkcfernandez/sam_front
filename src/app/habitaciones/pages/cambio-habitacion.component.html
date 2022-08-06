@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title">Modificar Tarifa Habitación: {{habitacion_numero}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+  
+    <form (ngSubmit)="guardar()" [formGroup]="formCambiarHabitacion">
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="habitacion">Habitacion Nueva</label>
+            <select class="form-control" id="habitacion" [(ngModel)]="habitacionSeleccionadaId" required name="habitacion_v" (change)="habitacionSeleccionada()" formControlName="habitacion_id_cambio">
+              <option [ngValue]="null" [disabled]="true" >Seleccione la Habitación a la que desea cambiar</option>
+              <option *ngFor="let item of habitacionesList" [value]="item.habitacion_id">
+                {{item.habitacion_numero}} - {{item.tipo_habitacion_nombre}}
+              </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="observaciones">Observaciones</label>
+            <input type="text" class="form-control" id="observaciones" aria-describedby="observaciones_v" required formControlName="observaciones">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" *ngIf="formCambiarHabitacion.valid" (click)="guardar()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+    </form>

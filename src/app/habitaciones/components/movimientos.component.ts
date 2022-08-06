@@ -11,6 +11,8 @@ import { RegistrarSalida } from '../interfaces/registrar-salida';
 import { RegistrarSalidaComponent } from './registrar-salida.component';
 import { RegistrarLimpiezaComponent } from './registrar-limpieza.component';
 import { RegistrarDesbloqueoComponent } from './registrar-desbloqueo.component';
+import { ModificarTarifaComponent } from 'src/app/habitaciones/components/modificar-tarifa.component';
+import { CambioHabitacionComponent } from './cambio-habitacion.component';
 
 @Component({
   selector: 'app-movimientos',
@@ -21,7 +23,6 @@ export class MovimientosComponent implements OnInit {
 
   notFound = false;
   movimientos: MovimientosLista[] = [];
-  movimientosFiltrados: MovimientosLista[] = [];
   registrarSalidaHabitacion!: RegistrarSalida;
   usuario_id: any;
 
@@ -49,7 +50,7 @@ export class MovimientosComponent implements OnInit {
 
   getHabitacionMovimientosLista(){
     this.notFound = false;
-    this.movimientos = [];
+    // this.movimientos = [];
 
     this.movimientosService.getHabitacionesMovvimientosLista().subscribe((response: any) => {
       this.movimientos = response;
@@ -61,14 +62,28 @@ export class MovimientosComponent implements OnInit {
   }
 
   registrarEntrada(habitacion_id: number, habitacion_numero: number, habitacion_tipo_id: number){
-    const modalRef = this.modalService.open(RegistrarEntradaComponent, {size: 'xl'});
+    const modalRef = this.modalService.open(RegistrarEntradaComponent, {size: 'lg'});
     modalRef.componentInstance.habitacion_id = habitacion_id;
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
     modalRef.componentInstance.habitacion_tipo_id = habitacion_tipo_id;
   }
 
+  modificarTarifa(habitacion_id: number, habitacion_numero: number, habitacion_tipo_id: number, movimiento_habitacion_id: number){
+    const modalRef = this.modalService.open(ModificarTarifaComponent, {size: 'lg'});
+    modalRef.componentInstance.habitacion_id = habitacion_id;
+    modalRef.componentInstance.habitacion_numero = habitacion_numero;
+    modalRef.componentInstance.habitacion_tipo_id = habitacion_tipo_id;
+    modalRef.componentInstance.movimiento_habitacion_id = movimiento_habitacion_id;
+  }
+
+  cambiarHabitacion(habitacion_id: number, habitacion_numero: number){
+    const modalRef = this.modalService.open(CambioHabitacionComponent, {size: 'lg'});
+    modalRef.componentInstance.habitacion_id = habitacion_id;
+    modalRef.componentInstance.habitacion_numero = habitacion_numero;
+  }
+
   registrarHoraAdicional(habitacion_numero: number, movimiento_habitacion_id: number){
-    const modalRef = this.modalService.open(RegistrarHoraAdicionalComponent, {size: 'md'});
+    const modalRef = this.modalService.open(RegistrarHoraAdicionalComponent, {size: 'lg'});
     modalRef.componentInstance.habitacion_numero = habitacion_numero;
     modalRef.componentInstance.movimiento_habitacion_id = movimiento_habitacion_id;
   }
